@@ -1,5 +1,15 @@
 package com.br.felipe.transferencia.business;
 
-public class TipoTransferenciaC {
+import java.math.BigDecimal;
+
+import com.br.felipe.transferencia.domain.Transferencia;
+
+public class TipoTransferenciaC implements TipoTransferencia {
+
+	@Override
+	public BigDecimal calculaTaxa(Transferencia transferencia) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }
