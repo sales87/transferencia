@@ -8,8 +8,17 @@ public class TipoTransferenciaD implements TipoTransferencia {
 
 	@Override
 	public BigDecimal calculaTaxa(Transferencia transferencia) {
-		// TODO Auto-generated method stub
-		return null;
+		TipoTransferencia tipoTransferencia;
+		
+		if(transferencia.getValor().compareTo(new BigDecimal(25000)) <= 0){
+			tipoTransferencia = new TipoTransferenciaA();
+		} else if(transferencia.getValor().compareTo(new BigDecimal(120000)) <= 0){
+			tipoTransferencia = new TipoTransferenciaB();
+		} else {
+			tipoTransferencia = new TipoTransferenciaC();
+		}
+		
+		return tipoTransferencia.calculaTaxa(transferencia);
 	}
 
 }
