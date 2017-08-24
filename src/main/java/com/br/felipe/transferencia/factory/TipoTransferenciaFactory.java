@@ -5,10 +5,11 @@ import com.br.felipe.transferencia.business.TipoTransferenciaA;
 import com.br.felipe.transferencia.business.TipoTransferenciaB;
 import com.br.felipe.transferencia.business.TipoTransferenciaC;
 import com.br.felipe.transferencia.business.TipoTransferenciaD;
+import com.br.felipe.transferencia.service.exception.TipoTransferenciaInvalidoException;
 
 public class TipoTransferenciaFactory {
 
-	public TipoTransferencia getTipoTransferencia(String tipo){
+	public static TipoTransferencia getTipoTransferencia(String tipo){
 		switch(tipo){
 		case "A":
 			return new TipoTransferenciaA();
@@ -19,7 +20,7 @@ public class TipoTransferenciaFactory {
 		case "D":
 			return new TipoTransferenciaD();
 		default:
-			throw new RuntimeException("Tipo inválido.");
+			throw new TipoTransferenciaInvalidoException("Tipo inválido.");
 		}
 	}
 }

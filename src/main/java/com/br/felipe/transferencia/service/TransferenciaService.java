@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.br.felipe.transferencia.business.CalculaTaxa;
+import com.br.felipe.transferencia.business.CalculadoraTaxa;
 import com.br.felipe.transferencia.business.TipoTransferencia;
 import com.br.felipe.transferencia.domain.Conta;
 import com.br.felipe.transferencia.domain.Transferencia;
@@ -39,10 +39,8 @@ public class TransferenciaService {
 	public Transferencia gravar(Transferencia transferencia) throws ContaInvalidaException, SaldoInsuficienteException{
 		transferencia.setId(null);
 		
-		CalculaTaxa calculadorTaxa = new CalculaTaxa();
-		TipoTransferenciaFactory factory = new TipoTransferenciaFactory();
-		TipoTransferencia tipoTransferencia = factory.getTipoTransferencia(transferencia.getTipo());
-		transferencia.setTaxa(calculadorTaxa.calculaTaxa(transferencia, tipoTransferencia));
+		TipoTransferencia tipoTransferencia = TipoTransferenciaFactory.getTipoTransferencia(transferencia.getTipo());
+		transferencia.setTaxa(CalculadoraTaxa.calculaTaxa(transferencia, tipoTransferencia));
 		
 		Conta contaOrigem = contaRepository.findOne(transferencia.getContaOrigem().getId());
 		Conta contaDestino = contaRepository.findOne(transferencia.getContaDestino().getId());
