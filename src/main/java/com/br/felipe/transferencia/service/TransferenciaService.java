@@ -28,7 +28,7 @@ public class TransferenciaService {
 		return transferenciaRepository.findAll();
 	}
 	
-	public Transferencia buscar(Long id) throws TransferenciaNaoEncontradaException{
+	public Transferencia buscar(Long id){
 		Transferencia transferencia = transferenciaRepository.findOne(id);
 		if(transferencia == null){
 			throw new TransferenciaNaoEncontradaException("Transferência não encontrada");
@@ -36,7 +36,7 @@ public class TransferenciaService {
 		return transferencia;
 	}
 	
-	public Transferencia gravar(Transferencia transferencia) throws ContaInvalidaException, SaldoInsuficienteException{
+	public Transferencia gravar(Transferencia transferencia){
 		transferencia.setId(null);
 		
 		TipoTransferencia tipoTransferencia = TipoTransferenciaFactory.getTipoTransferencia(transferencia.getTipo());
@@ -48,7 +48,7 @@ public class TransferenciaService {
 		if(contaOrigem == null || contaDestino ==  null){
 			throw new ContaInvalidaException("Conta de origem e/ou destino inválida");
 		}
-		if(contaOrigem.getSaldo().compareTo(transferencia.getValor().multiply(transferencia.getTaxa())) > 0){
+		if(contaOrigem.getSaldo().compareTo(transferencia.getValor().add(transferencia.getTaxa())) <= 0){
 			throw new SaldoInsuficienteException("Saldo insuficiente para fazer a transferência");
 		}
 		

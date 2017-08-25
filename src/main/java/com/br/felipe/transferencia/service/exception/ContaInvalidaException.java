@@ -1,6 +1,6 @@
 package com.br.felipe.transferencia.service.exception;
 
-public class ContaInvalidaException extends Exception {
+public class ContaInvalidaException extends RuntimeException {
 
 	/**
 	 * 

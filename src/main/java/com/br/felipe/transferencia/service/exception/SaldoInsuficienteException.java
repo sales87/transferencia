@@ -1,6 +1,6 @@
 package com.br.felipe.transferencia.service.exception;
 
-public class SaldoInsuficienteException extends Exception {
+public class SaldoInsuficienteException extends RuntimeException {
 
 	/**
 	 * 

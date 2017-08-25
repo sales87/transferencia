@@ -1,6 +1,6 @@
 package com.br.felipe.transferencia.service.exception;
 
-public class TransferenciaNaoEncontradaException extends Exception {
+public class TransferenciaNaoEncontradaException extends RuntimeException {
 	/**
 	 * 
 	 */
