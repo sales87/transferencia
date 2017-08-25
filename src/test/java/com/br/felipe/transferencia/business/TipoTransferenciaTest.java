@@ -4,6 +4,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
@@ -90,6 +91,7 @@ public class TipoTransferenciaTest {
 		Transferencia transferencia = mock(Transferencia.class);
 		
 		when(transferencia.getTipo()).thenReturn("C");
+		when(transferencia.getValor()).thenReturn(new BigDecimal(100.00));
 
 		LocalDate localDate = LocalDate.now();
 		localDate = localDate.plusDays(7);
@@ -98,7 +100,7 @@ public class TipoTransferenciaTest {
 		TipoTransferencia tipo = TipoTransferenciaFactory.getTipoTransferencia(transferencia.getTipo());
 		BigDecimal taxa = CalculadoraTaxa.calculaTaxa(transferencia, tipo);
 		
-		Assert.assertEquals(new BigDecimal(0.074), taxa);
+		Assert.assertEquals(new BigDecimal(7.4).setScale(2, RoundingMode.HALF_UP), taxa);
 	}
 	
 	@Test(expected=DataInvalidaException.class)
@@ -131,7 +133,7 @@ public class TipoTransferenciaTest {
 		TipoTransferencia tipo = TipoTransferenciaFactory.getTipoTransferencia(transferencia.getTipo());
 		BigDecimal taxa = CalculadoraTaxa.calculaTaxa(transferencia, tipo);
 		
-		Assert.assertEquals(new BigDecimal(0.074), taxa);
+		Assert.assertEquals(new BigDecimal(8954).setScale(2, RoundingMode.HALF_UP), taxa);
 	}
 	
 	@Test(expected=ValorInvalidoException.class)
