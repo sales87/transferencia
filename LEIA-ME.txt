@@ -1,0 +1,18 @@
+Detalhes das implementações
+
+	- TipoTransferencia
+		Usei o padrão factory para recuperar a calculo da Taxa e simplificar a escolha da implementação da interface TipoTransferencia;
+		Usei a API de datas do pacote java.time.* da versão 8 do Java.
+	- CalculadoraTaxa
+		Usei o padrão Strategy para a execução da calculo da taxa e simplificar a execução independente de qual tipo era.
+	- Testes
+		Usei o JUnit e o Mockito para construir os testes das regras
+	- Interação com o usuário
+		Criei uma pequena API Rest com as funções de listar as contas, listar os agendamentos de transferencia, buscar uma transferencia especifica e de gravar um agendamento de transferencia.
+		A persistência é feita em um banco H2.
+	- Scripts iniciais
+		INSERT INTO CONTA VALUES (1, 12345, 5000.0,1);
+		INSERT INTO CONTA VALUES (2, 23456, 7000.0,1);
+		INSERT INTO CONTA VALUES (3, 34567, 3000.0,1);
+	- Teste API Rest
+		Usei o plugin do Google Chrome Postman para executar as chamadas do serviço

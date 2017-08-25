@@ -11,14 +11,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.br.felipe.transferencia.domain.Conta;
-import com.br.felipe.transferencia.service.ContaSerivce;
+import com.br.felipe.transferencia.service.ContaService;
 
 @RestController
 @RequestMapping("/conta")
 public class ContaResource {
 	
 	@Autowired
-	private ContaSerivce contaService;
+	private ContaService contaService;
 	
 	@CrossOrigin
 	@RequestMapping(method=RequestMethod.GET)
